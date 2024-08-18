@@ -1,4 +1,5 @@
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import engine from "ejs-mate";
 import { Request, Response, NextFunction } from "express";
 import createError from "http-errors";

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { helloWorld } from "../controllers/helloWorld";
+import { homePage } from "../controllers/indexController";
 
 const indexRouter = Router();
 
-indexRouter.get("/", helloWorld);
+indexRouter.get("/", homePage);
 
 export default indexRouter;

@@ -21,7 +21,7 @@ export const getUsers = async (
       return next(err);
     }
 
-    const users = rows.map(({ username }) => username);
+    const users = rows.map(({ u_username }) => u_username);
 
     return res.status(200).render("allUsers", {
       title: "All Users",
@@ -77,7 +77,7 @@ export const getUser = async (
 
     return res.status(200).render("user", {
       title: "Get Specific User",
-      user: rows[0].username,
+      user: rows[0].u_username,
     });
   } catch (e) {
     const err = new CustomError((e as Error).message, 500);

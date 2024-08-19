@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 CREATE TABLE types (
    t_type_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-   t_typename VARCHAR ( 50 ) NOT NULL UNIQUE
+   t_type_name VARCHAR ( 50 ) NOT NULL UNIQUE
 );
 
 CREATE TABLE pokemon (
@@ -38,7 +38,7 @@ CREATE TABLE userhaspokemon (
 TEST_DATA_SQL="
 INSERT INTO users (u_username) VALUES ('Harry');
 
-INSERT INTO types (t_typename) VALUES ('Fire');
+INSERT INTO types (t_type_name) VALUES ('Fire');
 
 INSERT INTO pokemon (p_pokemon_name, p_picture, p_type_id) VALUES ('Charmander', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png', 1);
 

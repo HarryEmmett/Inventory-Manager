@@ -7,8 +7,8 @@
 </div>
 
 <% data.map((d) => { %>
-  <p>name: <%= d.name %></p>
-  <p>type: <%= d.type_name %></p>
-  <p>nickname: <%= d.nickname %></p>
-  <img src="<%= d.picture %>" height="40px" width="40px" />
+  <p>name: <%= d.p_pokemon_name %></p>
+  <p>type: <%= d.t_type_name %></p>
+  <p>nickname: <%= d.up_nickname %></p>
+  <img src="<%= d.p_picture %>" height="40px" width="40px" />
 <% }) %>

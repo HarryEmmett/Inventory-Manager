@@ -13,6 +13,6 @@ async function deleteUser(user) {
   }
 }
 
-async function navigateToUser(url) {
+function navigateToUser(url) {
   window.location.href = url;
 }

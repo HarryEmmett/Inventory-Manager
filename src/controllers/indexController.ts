@@ -3,14 +3,14 @@ import { pool } from "../db/pool";
 
 export const homePage = async (req: Request, res: Response) => {
   // get a pokemon (remove nickname)
-  // const { rows: getCharmanderAndType } = await pool.query(
-  //   `SELECT p.p_pokemon_id, p.p_pokemon_name, p.p_picture, t.t_type_name, up.up_nickname
-  //   FROM pokemon p
-  //   JOIN types t ON p.p_type_id = t.t_type_id
-  //   JOIN userhaspokemon up ON up_type_id = t.t_type_id
-  //   WHERE p.p_pokemon_name = $1 LIMIT 1`,
-  //   ["Charmander"]
-  // );
+  const { rows: getCharmanderAndType } = await pool.query(
+    `SELECT p.p_pokemon_id, p.p_pokemon_name, p.p_picture, t.t_type_name, up.up_nickname
+    FROM pokemon p
+    JOIN types t ON p.p_type_id = t.t_type_id
+    JOIN userhaspokemon up ON up_type_id = t.t_type_id
+    WHERE p.p_pokemon_name = $1 LIMIT 1`,
+    ["Charmander"]
+  );
 
   // console.log(getCharmanderAndType);
 
@@ -38,6 +38,6 @@ export const homePage = async (req: Request, res: Response) => {
 
   return res.status(200).render("index", {
     title: "Home Page",
-    data: [],
+    data: getCharmanderAndType,
   });
 };

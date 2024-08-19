@@ -31,6 +31,7 @@ CREATE TABLE userhaspokemon (
    up_pokemon_id INT REFERENCES pokemon(p_pokemon_id) ON DELETE CASCADE,
    up_nickname VARCHAR (100) NOT NULL,
    up_captured_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   up_pokemon_lvl INT CHECK (up_pokemon_lvl <= 99),
    CONSTRAINT unique_user_pokemon UNIQUE (up_user_id, up_pokemon_id)
 );
 "
@@ -42,7 +43,7 @@ INSERT INTO types (t_type_name) VALUES ('Fire');
 
 INSERT INTO pokemon (p_pokemon_name, p_picture, p_type_id) VALUES ('Charmander', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png', 1);
 
-INSERT INTO userhaspokemon (up_type_id, up_user_id, up_pokemon_id, up_nickname) VALUES (1, 1, 1, 'Char Char');
+INSERT INTO userhaspokemon (up_type_id, up_user_id, up_pokemon_id, up_nickname, up_pokemon_lvl) VALUES (1, 1, 1, 'Char Char', 8);
 "
 
 DROP_ALL_TABLES() {

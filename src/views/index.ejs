@@ -1,7 +1,14 @@
 <% layout('layout') %>
 <p>HOME PAGE</p>
-<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: row">
   <a href="/user/all">select existing user</a>
   <hr />
   <a href="/user/create">create a new user</a>
 </div>
+
+<% data.map((d) => { %>
+  <p>name: <%= d.name %></p>
+  <p>type: <%= d.type_name %></p>
+  <p>nickname: <%= d.nickname %></p>
+  <img src="<%= d.picture %>" height="40px" width="40px" />
+<% }) %>

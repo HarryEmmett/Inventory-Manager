@@ -2,13 +2,14 @@
   "name": "inventory-manager",
   "version": "1.0.0",
   "description": "Inventory Manager",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/app.js",
     "start:dev": "nodemon",
-    "create-environment": "./src/db/scripts/createEnvironment.sh"
+    "create-environment": "./src/db/scripts/createEnvironment.sh",
+    "build:css": "npx tailwindcss -i ./public/tailwind.css -o ./public/main.css --watch"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "eslint": "^9.9.0",
     "globals": "^15.9.0",
     "nodemon": "^3.1.4",
+    "tailwindcss": "^3.4.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.1.0"

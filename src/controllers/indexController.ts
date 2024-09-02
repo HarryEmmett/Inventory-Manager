@@ -26,7 +26,7 @@ export const homePage = async (req: Request, res: Response) => {
 
   // All pokemon a user owns
   const { rows: allFromUser } = await pool.query(
-    `SELECT u.u_username, p.p_pokemon_name, p.p_picture, up.up_nickname, up.up_pokemon_lvl, t.t_type_name
+    `SELECT u.u_username, p.p_pokemon_id, p.p_pokemon_name, p.p_picture, up.up_nickname, up.up_pokemon_lvl, t.t_type_name
     FROM users u
     JOIN userhaspokemon up ON u.u_id = up.up_user_id
     JOIN pokemon p ON p.p_pokemon_id = up.up_pokemon_id
@@ -36,16 +36,41 @@ export const homePage = async (req: Request, res: Response) => {
 
   const { rows: allPokemon } = await pool.query("SELECT * FROM pokemon");
 
-  const p = allPokemon.map(({ p_pokemon_id, p_pokemon_name }) => ({
+  const p = allPokemon.map(({ p_pokemon_id, p_pokemon_name, p_type_id }) => ({
     id: p_pokemon_id,
     name: p_pokemon_name,
+    type: p_type_id,
   }));
 
-  console.log(p);
   return res.render("index", {
     title: "Home Page",
     data: allFromUser,
     pokemon: p,
     user: req.user,
   });
+};
+
+export const deletePokemon = async (req: Request, res: Response) => {
+  try {
+    await pool.query("DELETE FROM userhaspokemon WHERE up_pokemon_id = $1;", [
+      req.params.id,
+    ]);
+
+    res.redirect("/");
+  } catch {
+    console.log("ERROR!");
+  }
+};
+
+export const addPokemon = async (req: Request, res: Response) => {
+  try {
+    await pool.query(
+      "INSERT INTO userhaspokemon (up_type_id, up_user_id, up_pokemon_id, up_nickname, up_pokemon_lvl) VALUES ($2, $3, $1, '', 6);",
+      [req.params.id, req.params.type, req.params.userId]
+    );
+
+    res.redirect("/");
+  } catch {
+    console.log("ERROR!");
+  }
 };

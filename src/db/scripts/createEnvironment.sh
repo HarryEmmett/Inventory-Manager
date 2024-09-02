@@ -9,7 +9,8 @@ DB_PASSWORD="password" # should hide this really
 TABLE_SCHEMA_SQL="
 CREATE TABLE users (
    u_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-   u_username VARCHAR ( 255 ) NOT NULL UNIQUE
+   u_username VARCHAR ( 255 ) NOT NULL UNIQUE,
+   u_password VARCHAR ( 255 ) NOT NULL
 );
 
 CREATE TABLE types (
@@ -37,13 +38,13 @@ CREATE TABLE userhaspokemon (
 "
 
 TEST_DATA_SQL="
-INSERT INTO users (u_username) VALUES ('Harry');
-
+INSERT INTO users (u_username, u_password) VALUES ('Harry', 'password');
 INSERT INTO types (t_type_name) VALUES ('Fire');
-
+INSERT INTO types (t_type_name) VALUES ('Grass');
 INSERT INTO pokemon (p_pokemon_name, p_picture, p_type_id) VALUES ('Charmander', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png', 1);
-
+INSERT INTO pokemon (p_pokemon_name, p_picture, p_type_id) VALUES ('Bulbasaur', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png', 2);
 INSERT INTO userhaspokemon (up_type_id, up_user_id, up_pokemon_id, up_nickname, up_pokemon_lvl) VALUES (1, 1, 1, 'Char Char', 8);
+INSERT INTO userhaspokemon (up_type_id, up_user_id, up_pokemon_id, up_nickname, up_pokemon_lvl) VALUES (2, 1, 2, 'Bulby', 6);
 "
 
 DROP_ALL_TABLES() {

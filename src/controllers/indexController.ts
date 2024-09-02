@@ -34,10 +34,18 @@ export const homePage = async (req: Request, res: Response) => {
     WHERE up.up_user_id = 1`
   );
 
-  console.log(allFromUser, 2);
+  const { rows: allPokemon } = await pool.query("SELECT * FROM pokemon");
 
-  return res.status(200).render("index", {
+  const p = allPokemon.map(({ p_pokemon_id, p_pokemon_name }) => ({
+    id: p_pokemon_id,
+    name: p_pokemon_name,
+  }));
+
+  console.log(p);
+  return res.render("index", {
     title: "Home Page",
     data: allFromUser,
+    pokemon: p,
+    user: req.user,
   });
 };

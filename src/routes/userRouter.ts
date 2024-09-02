@@ -4,8 +4,8 @@ import {
   createUser,
   createUserForm,
   getUser,
+  deleteUser,
 } from "../controllers/userController";
-import { deleteUser } from "../controllers/userController";
 
 const userRouter = Router();
 

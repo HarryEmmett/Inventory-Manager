@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+main {
+  height: 100%;
+}
+
 /*
 ! tailwindcss v3.4.10 | MIT License | https://tailwindcss.com
 */
@@ -560,20 +564,52 @@ video {
   --tw-contain-style:  ;
 }
 
+.col-span-8 {
+  grid-column: span 8 / span 8;
+}
+
+.col-start-3 {
+  grid-column-start: 3;
+}
+
 .flex {
   display: flex;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.grid {
+  display: grid;
 }
 
-.font-bold {
-  font-weight: 700;
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
-.underline {
-  text-decoration-line: underline;
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+.border-indigo-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(79 70 229 / var(--tw-border-opacity));
 }
 

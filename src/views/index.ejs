@@ -1,15 +1,44 @@
 <% layout('layout') %>
 <p>HOME PAGE</p>
 <div style="display: flex; flex-direction: row">
-  <a href="/user/all">select existing user</a>
-  <hr />
-  <a href="/user/create">create a new user</a>
+  <a href="/user/all">All users</a>
 </div>
 
+<% if (user) {%>
+<h1>WELCOME BACK <%= user.u_username %></h1>
+
+<% pokemon.map((p) => { %>
+  <p>Add: <%= p.name %></p>
+<% }) %>
 <% data.map((d) => { %>
+<div class="border-solid border-2 border-indigo-600">
   <p>name: <%= d.p_pokemon_name %></p>
   <p>type: <%= d.t_type_name %></p>
   <p>nickname: <%= d.up_nickname %></p>
   <p>level: <%= d.up_pokemon_lvl %></p>
   <img src="<%= d.p_picture %>" height="40px" width="40px" />
+</div>
 <% }) %>
+<a href="/auth/log-out">LOG OUT</a>
+<% } else { %>
+<div class="flex flex-col items-center">
+  <h1>please log in</h1>
+  <div class="border-solid border-2 border-indigo-600">
+    <form action="/auth/login" method="POST" class="flex flex-col">
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        placeholder="password"
+        type="password"
+      />
+      <div class="flex justify-center items-centre gap-2">
+        <button type="submit">Log In</button>
+        <a href="/auth/sign-up">Sign Up</a>
+      </div>
+    </form>
+  </div>
+</div>
+<%}%>
